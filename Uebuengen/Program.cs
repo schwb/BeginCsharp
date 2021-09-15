@@ -6,10 +6,11 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte geben sie einen Text ein");
-            string first = Console.ReadLine();
-            bool val = first.Equals("abcde");
-            Console.WriteLine(val);
+           string[] array = new string[] { "Julian","Ioanna","Linus","Bernhard","Carmen","Oliver","Amelie" };
+            for(int index = 0; index < array.Length; index += 1)
+            {
+                Console.WriteLine(array[index]);
+            }
         }
     }
 }
