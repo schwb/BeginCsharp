@@ -6,7 +6,10 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(5 + 8);
+            Console.WriteLine("Bitte geben Sie einen beliebigen Text ein, der jedoch keine Zahlen enthält");
+            string first = Console.ReadLine();
+            first = first.Replace("U", "G").Replace("u", "g");
+            Console.WriteLine(first);
         }
     }
 }
