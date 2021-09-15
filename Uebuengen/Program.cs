@@ -8,7 +8,7 @@ namespace Uebuengen
         {
             Console.WriteLine("Bitte geben Sie einen Text ein");
             string first = Console.ReadLine();
-            first = first.PadLeft(20, 'y');
+            first = first.PadRight(30, 'y');
             Console.WriteLine(first);
         }
     }
