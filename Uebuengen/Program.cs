@@ -6,10 +6,20 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ab wo soll runter gezählt werden?");
-            int var = Convert.ToInt32(Console.ReadLine());
-            for (int index = var; index >= 0; index -= 1)
-                Console.WriteLine(index);
+            string[] names = new string[] { "Julian", "Ioanna", "Linus", "Bernhard", "Carmen", "Oliver", "Amelie" };
+            for (int Index = 0; Index < 7; Index += 1)
+            {
+                if (names[Index].Contains("e"))
+                {
+                    Console.WriteLine(names[Index]);
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 }
+
+
