@@ -6,11 +6,11 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte geben Sie einen Text ein.");
             string first = Console.ReadLine();
-            int second = first.Length;
-            Console.WriteLine("Die Länge des eingegebenen Textes ist");
-                Console.WriteLine(second);
+            decimal second = Convert.ToDecimal(first);
+            string third = Console.ReadLine();
+            decimal fourth = Convert.ToDecimal(third);
+            Console.WriteLine(second + fourth);
         }
     }
 }
