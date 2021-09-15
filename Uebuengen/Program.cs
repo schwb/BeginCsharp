@@ -6,14 +6,10 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            int summe = 0;
-            Console.WriteLine("Bis wohin soll gezählt werden?");
+            Console.WriteLine("Ab wo soll runter gezählt werden?");
             int var = Convert.ToInt32(Console.ReadLine());
-            for (int index = 0; index <= var; index += 1) 
-            {
-                summe = summe + index;
-                Console.WriteLine(summe);
-            }
+            for (int index = var; index >= 0; index -= 1)
+                Console.WriteLine(index);
         }
     }
 }
