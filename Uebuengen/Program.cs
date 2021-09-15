@@ -8,9 +8,8 @@ namespace Uebuengen
         {
             Console.WriteLine("Bitte geben sie einen Text ein");
             string first = Console.ReadLine();
-            string s = first.ToLower();
-                string b = first.ToUpper();
-                Console.WriteLine(s + b);
+            bool val = first.Equals("abcde");
+            Console.WriteLine(val);
         }
     }
 }
