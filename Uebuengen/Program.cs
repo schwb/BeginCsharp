@@ -6,10 +6,13 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-           string[] array = new string[] { "Julian","Ioanna","Linus","Bernhard","Carmen","Oliver","Amelie" };
-            for(int index = 0; index < array.Length; index += 1)
+            int summe = 0;
+            Console.WriteLine("Bis wohin soll gezählt werden?");
+            int var = Convert.ToInt32(Console.ReadLine());
+            for (int index = 0; index <= var; index += 1) 
             {
-                Console.WriteLine(array[index]);
+                summe = summe + index;
+                Console.WriteLine(summe);
             }
         }
     }
