@@ -19,6 +19,29 @@ namespace Uebuengen
             {
                 Console.WriteLine(Einträge[Index]);
             }
+            int max = Einträge[0];
+            for (int Index = 0; Index < tabel; Index++)
+            {
+                if (max < Einträge[Index])
+                {
+                    max = Einträge[Index];
+                }
+            }
+            Console.WriteLine("Das Maximum lautet " + max);
+            int min = Einträge[0];
+            for (int Index = 0; Index < tabel; Index++)
+            {
+                if (min > Einträge[Index])
+                {
+                    min = Einträge[Index];
+                }
+            }
+            Console.WriteLine("Das Minimum lautet " + min);
+            double summe = 0;
+            for (int d = 0; Index < tabel; d++)
+                summe += Einträge[d];
+                    summe = summe / tabel;
+                Console.WriteLine(summe);     
         }
     }
 }
