@@ -6,25 +6,24 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-          for(int b=1; b<101;b++)
+            Random r = new Random();
+            int zufallszahl = r.Next(2, 200);
+            Console.WriteLine("Welche Zahl ist gesucht?");
+            int a = Convert.ToInt32(Console.ReadLine());
+            while(a != zufallszahl)
             {
-                if(b % 3 == 0 && b%5==0)
+                if(a< zufallszahl)
                 {
-                        Console.WriteLine("FizzBuzz");
-                    }
-                    else if(b%3==0)
-                    {
-                        Console.WriteLine("Fizz");
-                    }
-                else if(b%5==0)
-                {
-                    Console.WriteLine("Buzz");
+                    Console.WriteLine("Deine Zahl ist zu klein");
                 }
                 else
                 {
-                    Console.WriteLine(b);
+                    Console.WriteLine("Deine Zahl ist zu groß");
                 }
+                Console.WriteLine("Welche Zahl ist gesucht?");
+                a = Convert.ToInt32(Console.ReadLine());
             }
+            Console.WriteLine("Sie haben gewonnen!");
         }
     }
 }
