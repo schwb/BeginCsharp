@@ -6,48 +6,31 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Random r = new Random();
-            int zufallszahl = r.Next(2, 200);
-            Console.WriteLine("Welche Zahl ist gesucht?");
-            int a = Convert.ToInt32(Console.ReadLine());
-            while(a != zufallszahl)
+            Console.WriteLine("Wie ist dein Name?");
+            string a = Console.ReadLine();
+            bool b = string.IsNullOrEmpty(a);
+            while(b)
             {
-                if(a< zufallszahl)
-                {
-                    Console.WriteLine("Deine Zahl ist zu klein");
-                }
-                else
-                {
-                    Console.WriteLine("Deine Zahl ist zu groß");
-                }
-                Console.WriteLine("Welche Zahl ist gesucht?");
-                a = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Hast du keinen Namen?");
+                a = Console.ReadLine();
+                b = string.IsNullOrEmpty(a);
             }
-            Console.WriteLine("Sie haben gewonnen! Möchten Sie nochmal spielen? (yes or no)");
-            string d = Console.ReadLine();
-            string yes = ("yes");
-            while(d == yes)
+            int summe1 = 0;
+            for(int c = 0; c < a.Length; c++)
             {
-                zufallszahl = r.Next(2, 200);
-                Console.WriteLine("Welche Zahl ist gesucht?");
-                a = Convert.ToInt32(Console.ReadLine());
-                while (a != zufallszahl)
+                char u = a[c];
+                if (u.Equals('a'))
                 {
-                    if (a < zufallszahl)
-                    {
-                        Console.WriteLine("Deine Zahl ist zu klein");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Deine Zahl ist zu groß");
-                    }
-                    Console.WriteLine("Welche Zahl ist gesucht?");
-                    a = Convert.ToInt32(Console.ReadLine());
+                    summe1 = summe1 + 1;
                 }
-                Console.WriteLine("Sie haben gewonnen! Möchten Sie nochmal spielen? (yes or no)");
-                d = Console.ReadLine();
+                if (u.Equals('A'))
+                {
+                    summe1 = summe1 + 1;
+                }
             }
-            Console.WriteLine("Goodbye.");
+            Console.WriteLine("Der Buchstabe A/a ist im eingegebenen Wort " + summe1 + "mal enthalten.");
+            Console.WriteLine("Bitte geben sie eine Zahl ein.");
+
         }
     }
 }
