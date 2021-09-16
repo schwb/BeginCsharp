@@ -6,18 +6,13 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte geben sie eine Zahl ein.");
+            Console.WriteLine("Bitte geben Sie eine Zahl ein.");
             int a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Bitte geben sie eine Zahl ein.");
-            int b = Convert.ToInt32(Console.ReadLine());
-            if(a>b)
-            {
-                Console.WriteLine("Zahl1 ist größer als Zahl2.");
-            }
-            else
-            {
-                Console.WriteLine("Zahl2 ist größer als Zahl1.");
-            }
+            int Tage = a / (360 * 24);
+            int Stunden = (a - (Tage * 360 * 24))/360;
+            int Minuten = (a - (Tage * 360 * 24) - (Stunden * 360)) / 60;
+            int Sekunden = (a - (Tage * 360 * 24) - (Stunden * 360) - (Minuten * 60));
+            Console.WriteLine($"Tage: {Tage}, Stunden: {Stunden}, Minuten: {Minuten}, Sekunden: {Sekunden}");
         }
     }
 }
