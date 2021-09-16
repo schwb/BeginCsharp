@@ -6,13 +6,14 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-          for (/*Startbedingung*/;/*Abbruchbedingung*/;/*Zählverhalten*/ )
+            Console.WriteLine("Bitte geben sie Namen ein, die mit einem Semikolon getrennt sind");
+            string a = Console.ReadLine();
+            string[] b = a.Split(';');
+            for(int Index = 0; Index < b.Length; Index += 1 )
             {
-                if ( /* Bedingung */)
-                {
-                    //block wird ausgeführt, wenn true
-                }
+                Console.WriteLine(b[Index]);
             }
+
         }
     }
 }
