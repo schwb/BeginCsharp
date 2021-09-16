@@ -24,10 +24,11 @@ namespace Uebuengen
                 a = Convert.ToInt32(Console.ReadLine());
             }
             Console.WriteLine("Sie haben gewonnen! Möchten Sie nochmal spielen? (yes or no)");
-            string z = Console.ReadLine();
+            string d = Console.ReadLine();
             string yes = ("yes");
-            while(z == yes)
+            while(d == yes)
             {
+                zufallszahl = r.Next(2, 200);
                 Console.WriteLine("Welche Zahl ist gesucht?");
                 a = Convert.ToInt32(Console.ReadLine());
                 while (a != zufallszahl)
@@ -44,7 +45,7 @@ namespace Uebuengen
                     a = Convert.ToInt32(Console.ReadLine());
                 }
                 Console.WriteLine("Sie haben gewonnen! Möchten Sie nochmal spielen? (yes or no)");
-                string d = Console.ReadLine();
+                d = Console.ReadLine();
             }
             Console.WriteLine("Goodbye.");
         }
