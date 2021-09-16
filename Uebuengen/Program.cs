@@ -6,14 +6,18 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte geben sie Namen ein, die mit einem Semikolon getrennt sind");
-            string a = Console.ReadLine();
-            string[] b = a.Split(';');
-            for(int Index = 0; Index < b.Length; Index += 1 )
+            Console.WriteLine("Wie viele Einträge möchten Sie im Array haben?");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int[] b = new int[a];
+            for(int c = 0; c < b.Length; c++)
             {
-                Console.WriteLine(b[Index]);
+                Console.WriteLine("Welche Zahl soll nun eingetragen werden?");
+                b[c] = Convert.ToInt32(Console.ReadLine());
             }
-
+            for (int c = 0; c < b.Length; c++)
+            {
+                Console.WriteLine(b[c]);
+            }
         }
     }
 }
