@@ -18,6 +18,30 @@ namespace Uebuengen
             {
                 Console.WriteLine(b[c]);
             }
+            int max = b[0];
+            for(int c = 0; c < b.Length; c++)
+            {
+                if (max < b[c])
+                {
+                    max = b[c];
+                }
+            }
+            Console.WriteLine("Maximum ist " + max);
+            int min = b[0];
+            for(int c =0;c<b.Length; c++)
+            {
+                if (min > b[c])
+                {
+                    min = b[c];
+                }
+            }
+            Console.WriteLine("Minimum ist " + min);
+            double summe = 0;
+            for(int c=0;c<b.Length; c++)
+            {
+                summe = summe + b[c];
+            }
+            Console.WriteLine("Der Durchschnitt ist " + (summe / a));
         }
     }
 }
