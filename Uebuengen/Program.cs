@@ -6,42 +6,25 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Wie viele Einträge möchten Sie im Array haben?");
-            int a = Convert.ToInt32(Console.ReadLine());
-            int[] b = new int[a];
-            for(int c = 0; c < b.Length; c++)
+          for(int b=1; b<101;b++)
             {
-                Console.WriteLine("Welche Zahl soll nun eingetragen werden?");
-                b[c] = Convert.ToInt32(Console.ReadLine());
-            }
-            for (int c = 0; c < b.Length; c++)
-            {
-                Console.WriteLine(b[c]);
-            }
-            int max = b[0];
-            for(int c = 0; c < b.Length; c++)
-            {
-                if (max < b[c])
+                if(b % 3 == 0 && b%5==0)
                 {
-                    max = b[c];
+                        Console.WriteLine("FizzBuzz");
+                    }
+                    else if(b%3==0)
+                    {
+                        Console.WriteLine("Fizz");
+                    }
+                else if(b%5==0)
+                {
+                    Console.WriteLine("Buzz");
+                }
+                else
+                {
+                    Console.WriteLine(b);
                 }
             }
-            Console.WriteLine("Maximum ist " + max);
-            int min = b[0];
-            for(int c =0;c<b.Length; c++)
-            {
-                if (min > b[c])
-                {
-                    min = b[c];
-                }
-            }
-            Console.WriteLine("Minimum ist " + min);
-            double summe = 0;
-            for(int c=0;c<b.Length; c++)
-            {
-                summe = summe + b[c];
-            }
-            Console.WriteLine("Der Durchschnitt ist " + (summe / a));
         }
     }
 }
