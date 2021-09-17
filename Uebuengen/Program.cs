@@ -8,6 +8,8 @@ namespace Uebuengen
         {
             Console.WriteLine("Bitte gib ein wort ein:");
             string Wort = Console.ReadLine();
+            string[] result = Wort.Split(new char[] { ',', ';', '!', '.', '?', '"', ' ' });
+            Wort = string.Join("", result);
             Wort = Wort.ToLower();
             int f = Wort.Length - 1;
             int u = 0;
