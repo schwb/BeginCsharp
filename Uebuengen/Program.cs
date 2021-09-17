@@ -6,29 +6,37 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte gib ein wort ein:");
-            string Wort = Console.ReadLine();
-            string[] result = Wort.Split(new char[] { ',', ';', '!', '.', '?', '"', ' ' });
-            Wort = string.Join("", result);
-            Wort = Wort.ToLower();
-            int f = Wort.Length - 1;
-            int u = 0;
-            for (int Index = 0; Index < Wort.Length/2 && u==0; Index++)
+            int[] zahlen = new int[] { 10, 20, 98, 50, 1, 70 };
+            Console.WriteLine("Die Werte des Arrays:");
+            for (int Index = 0; Index < zahlen.Length; Index++)
             {
-                if (Wort[Index] == Wort[f])
+                Console.WriteLine(zahlen[Index]);
+            }
+            Console.WriteLine("Die Werte des Arrays rückwärts:");
+            for (int Index = zahlen.Length - 1; Index >= 0; Index--)
+            {
+                Console.WriteLine(zahlen[Index]);
+            }
+            Console.WriteLine("Die Werte in sortierter Reihenfolge:");
+            int position = 0;
+            while (position < zahlen.Length - 1)
+            {
+                if (zahlen[position] > zahlen[position + 1])
                 {
-                    f -= 1;
+                    int swap = zahlen[position];
+                    zahlen[position] = zahlen[position + 1];
+                    zahlen[position + 1] = swap;
+                    position = 0;
                 }
                 else
                 {
-                    u = 1;
-                    Console.WriteLine("Das Wort ist kein Palindrom.");
+                    position++;
                 }
             }
-            if (u == 0)
-            {
-                Console.WriteLine("Das Wort ist ein Palindrom.");
-            }
+
+
+
+            Console.WriteLine(string.Join(",", zahlen));
         }
     }
 }
