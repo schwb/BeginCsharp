@@ -6,35 +6,27 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte gib eine Zahl ein.");
-            double Zahl1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Bitte gib eine Zahl ein.");
-            double Zahl2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Bitte gib einen Operator ein. (+-*/%)");
-            string Operator = Console.ReadLine();
-            double ergebnis = 0;
-            switch (Operator)
+            Console.WriteLine("Bitte gib ein wort ein:");
+            string Wort = Console.ReadLine();
+            Wort = Wort.ToLower();
+            int f = Wort.Length - 1;
+            int u = 0;
+            for (int Index = 0; Index < Wort.Length/2 && u==0; Index++)
             {
-                case "+":
-                    ergebnis = Zahl1 + Zahl2;
-                    break;
-                case "-":
-                    ergebnis = Zahl1 - Zahl2;
-                    break;
-                case "/":
-                    ergebnis = Zahl1 / Zahl2;
-                    break;
-                case "*":
-                    ergebnis =  Zahl1* Zahl2;
-                    break;
-                case "%":
-                    ergebnis = Zahl1 % Zahl2;
-                    break;
-                default:
-                    Console.WriteLine("Der von Dir eingegebene Operator ist nicht definiert");
-                    break;
+                if (Wort[Index] == Wort[f])
+                {
+                    f -= 1;
+                }
+                else
+                {
+                    u = 1;
+                    Console.WriteLine("Das Wort ist kein Palindrom.");
+                }
             }
-            Console.WriteLine($"Das Ergebnis deiner Rechnung ist {ergebnis}.");
+            if (u == 0)
+            {
+                Console.WriteLine("Das Wort ist ein Palindrom.");
+            }
         }
     }
 }
