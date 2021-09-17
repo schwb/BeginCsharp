@@ -6,13 +6,34 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte geben Sie eine Zahl ein.");
-            int a = Convert.ToInt32(Console.ReadLine());
-            int Tage = a / (360 * 24);
-            int Stunden = (a - (Tage * 360 * 24))/360;
-            int Minuten = (a - (Tage * 360 * 24) - (Stunden * 360)) / 60;
-            int Sekunden = (a - (Tage * 360 * 24) - (Stunden * 360) - (Minuten * 60));
-            Console.WriteLine($"Tage: {Tage}, Stunden: {Stunden}, Minuten: {Minuten}, Sekunden: {Sekunden}");
+            double summe1 = 0;
+            Console.WriteLine("Wie viele Einträge möchtest du im Array haben?");
+            int Einträge = Convert.ToInt32(Console.ReadLine());
+            double[] Array = new double[Einträge];
+            for (int Index = 0; Index < Array.Length; Index++)
+            {
+                Console.WriteLine("Bitte geben sie eine Fließkommazahl ein.");
+                Array[Index] = Convert.ToDouble(Console.ReadLine());
+            }
+            for (int Index = 0; Index < Array.Length; Index++)
+            {
+                summe1 += Array[Index];
+            }
+            Console.WriteLine($"Summe for-Schleife = {summe1}");
+            double summe2 = 0;
+            foreach(double value in Array )
+            {
+                summe2 += value;
+            }
+            Console.WriteLine($"Summe foreach-Schleife = {summe2}");
+            double summe3 = 0;
+            int a = 0;
+            while(a != Array.Length)
+                    {
+                summe3 += Array[a];
+                a += 1;
+            }
+            Console.WriteLine($"Summe while-Schleife = {summe3}");
         }
     }
 }
