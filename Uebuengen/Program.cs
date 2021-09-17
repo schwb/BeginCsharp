@@ -27,7 +27,6 @@ namespace Uebuengen
             int i = 0;
             for (int Index=u; i==0 && Index>=0 ;Index--)
             {
-                }
                 if (Zahl1%Index==0 && Zahl2%Index==0)
                 {
                     Console.WriteLine($"Der größte gemeinsame Teiler ist{Index}.");
