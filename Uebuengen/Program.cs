@@ -6,37 +6,27 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            int[] zahlen = new int[] { 10, 20, 98, 50, 1, 70 };
-            Console.WriteLine("Die Werte des Arrays:");
-            for (int Index = 0; Index < zahlen.Length; Index++)
+            Console.WriteLine("Bitte gib die ISBN-Nummer ein.");
+            string Nummer1 = Console.ReadLine();
+            string nummer = Nummer1.Replace("-","").Replace(" ","");
+            int a = 10;
+            int c = 0;
+            for (int Index=0; Index<nummer.Length-1; Index++)
             {
-                Console.WriteLine(zahlen[Index]);
+                int z = Convert.ToInt32(nummer[Index]);
+                int b = z * a;
+                a -= 1;
+                c += b;
             }
-            Console.WriteLine("Die Werte des Arrays rückwärts:");
-            for (int Index = zahlen.Length - 1; Index >= 0; Index--)
+            int x = Convert.ToInt32(nummer[9]);
+            if ((c + x) % 11 == 0)
             {
-                Console.WriteLine(zahlen[Index]);
+                Console.WriteLine($"Diese Nummer ist {(c + x) / 11} *11, also ist sie eine gültige ISBN-Nummer.");
             }
-            Console.WriteLine("Die Werte in sortierter Reihenfolge:");
-            int position = 0;
-            while (position < zahlen.Length - 1)
+            else
             {
-                if (zahlen[position] > zahlen[position + 1])
-                {
-                    int swap = zahlen[position];
-                    zahlen[position] = zahlen[position + 1];
-                    zahlen[position + 1] = swap;
-                    position = 0;
-                }
-                else
-                {
-                    position++;
-                }
+                Console.WriteLine("Diese Nummer ist keine gültige ISBN-Nummer.");
             }
-
-
-
-            Console.WriteLine(string.Join(",", zahlen));
         }
     }
 }
