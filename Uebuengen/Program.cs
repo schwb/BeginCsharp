@@ -6,27 +6,36 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte gib die ISBN-Nummer ein.");
-            string Nummer1 = Console.ReadLine();
-            string nummer = Nummer1.Replace("-","").Replace(" ","");
-            int a = 10;
-            int c = 0;
-            for (int Index=0; Index<nummer.Length-1; Index++)
+            Console.WriteLine("Bitte gib eine Zahl ein.");
+            int Zahl1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Bitte gib eine Zahl ein.");
+            int Zahl2 = Convert.ToInt32(Console.ReadLine());
+            int G = 0;
+            int K = 0;
+            if (Zahl1>=Zahl2)
             {
-                int z = Convert.ToInt32(nummer[Index].ToString());
-                int b = z * a;
-                a -= 1;
-                c += b;
-            }
-            Console.WriteLine(c);
-            int x = Convert.ToInt32(nummer[9].ToString());
-            if ((c + x) % 11 == 0)
-            {
-                Console.WriteLine($"Diese Nummer ist {(c + x) / 11} *11, also ist sie eine gültige ISBN-Nummer.");
+                G = Zahl1;
+                K = Zahl2;
             }
             else
             {
-                Console.WriteLine("Diese Nummer ist keine gültige ISBN-Nummer.");
+                G = Zahl2;
+                K = Zahl1;
+            }
+            int u = G + 1;
+            int[] Z = new int[u];
+            int i = 0;
+            for (int Index=u; i==0 && Index>=0 ;Index--)
+            {
+                }
+                if (Zahl1%Index==0 && Zahl2%Index==0)
+                {
+                    Console.WriteLine($"Der größte gemeinsame Teiler ist{Index}.");
+                    i = 1;
+                }
+                else
+                {
+                }
             }
         }
     }
