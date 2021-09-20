@@ -52,14 +52,7 @@ namespace Uebuengen
             {
                 Console.WriteLine(Zahlen[Index]);
             }
-            for (int Index = 0; Index<Zahlen.Count; Index++)
-            {
-                if (Zahlen[Index]>80)
-                {
-                    Zahlen.RemoveAt(Index);
-                    Index -= 1;
-                }
-            }
+            Zahlen.RemoveAll(number => number > 80);
             for (int Index = 0; Index < Zahlen.Count; Index++)
             {
                 Console.WriteLine(Zahlen[Index]);
