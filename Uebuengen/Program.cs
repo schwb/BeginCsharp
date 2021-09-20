@@ -6,33 +6,79 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Wie viele Einträge möchtest du?");
-            int Einträge = Convert.ToInt32(Console.ReadLine());
-            string[] Wörter = new string[Einträge];
-            for (int Index = 0; Index < Wörter.Length; Index++)
+            Random k1 = new Random();
+            int Zahl1 = k1.Next(0, 36);
+            Console.WriteLine("Wie viel $ besitzen sie?");
+            int Besitz1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Was ist ihr erster Einsatz?");
+            int Einsatz = Convert.ToInt32(Console.ReadLine());
+            int Gewinn = 0;
+            int AnzahlS = 1;
+            int Besitz = Besitz1;
+            int a = 0;
+            int Zahl = Zahl1;
+            while(Besitz>0 && a==0)
             {
-                Console.WriteLine("Bitte tippe einen namen ein.");
-                Wörter[Index] = Console.ReadLine();
-            }
-            string Konkateniert = string.Join(';' , Wörter);
-            Console.WriteLine($"Die Namen lauten: {Konkateniert}.");
-            double[] Zahlen = new double[Einträge];
-            for (int Index =0; Index<Zahlen.Length; Index++)
+            if (Zahl != 0 && Zahl % 2 == 0)
             {
-                Console.WriteLine("bitte gib eine zahl ein.");
-                int zahl = Convert.ToInt32(Console.ReadLine());
-                Zahlen[Index] = zahl;
+                Besitz = Besitz1 + 2 * Einsatz;
+                Gewinn = 1;
             }
-            int Inhalt = 0;
-            double summe = 0;
-            while (Inhalt < Zahlen.Length)
+            else if (Zahl == 0)
             {
-                double Zahl1 = Zahlen[Inhalt];
-                summe += Zahl1;
-                Inhalt++;
+                Besitz = Besitz1;
+                    Gewinn = 0;
             }
-            double Durchschnitt = summe / Einträge;
-            Console.WriteLine($"Die Summe der Zahlen lautet: {summe} und der Durchschnitt lautet: {Durchschnitt}.");
+            else
+            {
+                Besitz = Besitz1 - Einsatz;
+                    Gewinn = 0;
+            }
+            Console.WriteLine($"Anzahl des Spiels: {AnzahlS}, Geworfene Zahl: {Zahl}, Dein Einsatz: {Einsatz}, Kapital davor: {Besitz1}, Kapital danach: {Besitz}");
+                Random k = new Random();
+                Zahl = k.Next(0, 36);
+                AnzahlS++;
+                if (Besitz >= 10000 && Gewinn == 1)
+                {
+                    Einsatz = 10;
+                }
+                if (Besitz >= 10000 && Gewinn == 0)
+                {
+                    Einsatz = Einsatz * 2;
+                }
+                else if (Besitz <10000 && Einsatz * 2 <= Besitz)
+                {
+                    Einsatz = 10000 - Besitz;
+                    Einsatz = Einsatz * 2;
+                    if(Einsatz>Besitz)
+                    {
+                        Einsatz = Besitz;
+                    }
+                }
+                else if (Besitz < 10000 && Besitz > 1000)
+                {
+                    Einsatz = 1000;
+                }
+                else if (Besitz <=1000)
+                {
+                    Einsatz = Besitz;
+                }
+                Console.WriteLine("Möchten sie nochmal spielen? (ja, nein)");
+                if(Console.ReadLine()=="ja")
+                {
+                    a = 0;
+                }
+                else
+                {
+                    a = 1;
+                }
+                Besitz1 = Besitz;
+                if (Einsatz>1000)
+                {
+                    Einsatz = 1000;
+                }
+            }
+            Console.WriteLine($"Da Sie kein Kapital mehr haben, können Sie nicht weiterspielen!");
         }
     }
 }
