@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Uebuengen
 {
@@ -6,80 +7,63 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Random k = new Random();
-            Console.WriteLine("Wie viel $ besitzen sie?");
-            int Besitz1 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Was ist ihr erster Einsatz?");
-            int Einsatz = Convert.ToInt32(Console.ReadLine());
-            int Gewinn = 0;
-            int AnzahlS = 1;
-            int Besitz = Besitz1;
-            bool weiterspielen = true;
-            while (Besitz > 0 && weiterspielen)
+            List<int> Zahlen = new List<int> (){ 5, 3, 7 };
+            int stop = 0;
+            while (stop == 0)
             {
-                Besitz -= Einsatz;
-
-                int Zahl = k.Next(0, 36);
-
-                if (Zahl != 0 && Zahl % 2 == 0)
+                Console.WriteLine("Bitte gib ein, welche Zahl du hinzufügen möchtest.");
+                string P = Console.ReadLine();
+                if (P == "")
                 {
-                    Besitz = Besitz + 2 * Einsatz;
-                    Gewinn = 1;
-                }
-                else if (Zahl == 0)
-                {
-                    //Besitz = Besitz;
-                    Gewinn = 0;
+                    stop = 1;
                 }
                 else
                 {
-                    //Besitz = Besitz1 - Einsatz;
-                    Gewinn = 0;
-                }
-                Console.WriteLine($"Anzahl des Spiels: {AnzahlS}, Geworfene Zahl: {Zahl}, Dein Einsatz: {Einsatz}, Kapital davor: {Besitz1}, Kapital danach: {Besitz}");
-                Besitz1 = Besitz;
-
-                AnzahlS++;
-                if (Besitz >= 10000 && Gewinn == 1)
-                {
-                    Einsatz = 10;
-                }
-                if (Besitz >= 10000 && Gewinn == 0)
-                {
-                    Einsatz = Einsatz * 2;
-                }
-                else if (Besitz < 10000 && Einsatz * 2 <= Besitz)
-                {
-                    Einsatz = 10000 - Besitz;
-                    Einsatz = Einsatz * 2;
-                    if (Einsatz > Besitz)
-                    {
-                        Einsatz = Besitz;
-                    }
-                }
-                else if (Besitz < 10000 && Besitz > 1000)
-                {
-                    Einsatz = 1000;
-                }
-                else if (Besitz <= 1000)
-                {
-                    Einsatz = Besitz;
-                }
-                Console.WriteLine("Möchten sie nochmal spielen? (ja, nein)");
-                if (Console.ReadLine() == "ja")
-                {
-                    weiterspielen = true;
-                }
-                else
-                {
-                    weiterspielen = false;
-                }
-                if (Einsatz > 1000)
-                {
-                    Einsatz = 1000;
+                    Zahlen.Add(Convert.ToInt32(P));
                 }
             }
-            Console.WriteLine($"Da Sie kein Kapital mehr haben, können Sie nicht weiterspielen!");
+            for (int Index=0; Index<Zahlen.Count;Index++)
+            {
+                Console.WriteLine(Zahlen[Index]);
+            }
+            Zahlen.Insert(2, 99);
+            for (int Index = 0; Index < Zahlen.Count; Index++)
+            {
+                Console.WriteLine(Zahlen[Index]);
+            }
+            Zahlen.Insert(3, 105);
+            Zahlen.AddRange(new int[] { 91, 92, 93 });
+            for (int Index = 0; Index < Zahlen.Count; Index++)
+            {
+                Console.WriteLine(Zahlen[Index]);
+            }
+            Zahlen.RemoveAt(0);
+            for (int Index = 0; Index < Zahlen.Count; Index++)
+            {
+                Console.WriteLine(Zahlen[Index]);
+            }
+            Zahlen.Remove(99);
+            for (int Index = 0; Index < Zahlen.Count; Index++)
+            {
+                Console.WriteLine(Zahlen[Index]);
+            }
+            Zahlen.RemoveAt(Zahlen.Count - 1);
+            for (int Index = 0; Index < Zahlen.Count; Index++)
+            {
+                Console.WriteLine(Zahlen[Index]);
+            }
+            for (int Index = 0; Index<Zahlen.Count; Index++)
+            {
+                if (Zahlen[Index]>80)
+                {
+                    Zahlen.RemoveAt(Index);
+                    Index -= 1;
+                }
+            }
+            for (int Index = 0; Index < Zahlen.Count; Index++)
+            {
+                Console.WriteLine(Zahlen[Index]);
+            }
         }
     }
 }
