@@ -22,40 +22,26 @@ namespace Uebuengen
                     Zahlen.Add(Convert.ToInt32(P));
                 }
             }
-            for (int Index=0; Index<Zahlen.Count;Index++)
-            {
-                Console.WriteLine(Zahlen[Index]);
-            }
+            Ausgabe(Zahlen);
             Zahlen.Insert(2, 99);
-            for (int Index = 0; Index < Zahlen.Count; Index++)
-            {
-                Console.WriteLine(Zahlen[Index]);
-            }
+            Ausgabe(Zahlen);
             Zahlen.Insert(3, 105);
             Zahlen.AddRange(new int[] { 91, 92, 93 });
-            for (int Index = 0; Index < Zahlen.Count; Index++)
-            {
-                Console.WriteLine(Zahlen[Index]);
-            }
+            Ausgabe(Zahlen);
             Zahlen.RemoveAt(0);
-            for (int Index = 0; Index < Zahlen.Count; Index++)
-            {
-                Console.WriteLine(Zahlen[Index]);
-            }
+            Ausgabe(Zahlen);
             Zahlen.Remove(99);
-            for (int Index = 0; Index < Zahlen.Count; Index++)
-            {
-                Console.WriteLine(Zahlen[Index]);
-            }
+            Ausgabe(Zahlen);
             Zahlen.RemoveAt(Zahlen.Count - 1);
-            for (int Index = 0; Index < Zahlen.Count; Index++)
-            {
-                Console.WriteLine(Zahlen[Index]);
-            }
+            Ausgabe(Zahlen);
             Zahlen.RemoveAll(number => number > 80);
-            for (int Index = 0; Index < Zahlen.Count; Index++)
+            Ausgabe(Zahlen);
+        }
+        static void Ausgabe(List<int> egalwasmanhierschreibt)
+        {
+            for (int Index = 0; Index < egalwasmanhierschreibt.Count; Index++)
             {
-                Console.WriteLine(Zahlen[Index]);
+                Console.WriteLine(egalwasmanhierschreibt[Index]);
             }
         }
     }
