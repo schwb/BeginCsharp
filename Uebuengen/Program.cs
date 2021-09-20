@@ -6,40 +6,33 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bitte gib eine Zahl ein.");
-            string Zahl3 = Console.ReadLine();
-            int Zahl1 = Convert.ToInt32(Zahl3.Replace("-",""));
-            Console.WriteLine("Bitte gib eine Zahl ein.");
-            string Zahl4 = Console.ReadLine();
-            int Zahl2 = Convert.ToInt32(Zahl4.Replace("-",""));
-            int G = 0;
-            int K = 0;
-            if (Zahl1>=Zahl2)
+            Console.WriteLine("Wie viele Einträge möchtest du?");
+            int Einträge = Convert.ToInt32(Console.ReadLine());
+            string[] Wörter = new string[Einträge];
+            for (int Index = 0; Index < Wörter.Length; Index++)
             {
-                G = Zahl1;
-                K = Zahl2;
+                Console.WriteLine("Bitte tippe einen namen ein.");
+                Wörter[Index] = Console.ReadLine();
             }
-            else
+            string Konkateniert = string.Join(';' , Wörter);
+            Console.WriteLine($"Die Namen lauten: {Konkateniert}.");
+            double[] Zahlen = new double[Einträge];
+            for (int Index =0; Index<Zahlen.Length; Index++)
             {
-                G = Zahl2;
-                K = Zahl1;
+                Console.WriteLine("bitte gib eine zahl ein.");
+                int zahl = Convert.ToInt32(Console.ReadLine());
+                Zahlen[Index] = zahl;
             }
-            int u = G + 1;
-            int[] Z = new int[u];
-            int i = 0;
-            for (int Index=u; i==0;Index--)
+            int Inhalt = 0;
+            double summe = 0;
+            while (Inhalt < Zahlen.Length)
             {
-                if (Zahl1==0 && Zahl2==0)
-                {
-                    Console.WriteLine("Der größte gemeinsame Teiler ist Unendlich.");
-                    i = 1;
-                }
-                else if (Zahl1%Index==0 && Zahl2%Index==0)
-                {
-                    Console.WriteLine($"Der größte gemeinsame Teiler ist {Index}.");
-                    i = 1;
-                }
+                double Zahl1 = Zahlen[Inhalt];
+                summe += Zahl1;
+                Inhalt++;
             }
+            double Durchschnitt = summe / Einträge;
+            Console.WriteLine($"Die Summe der Zahlen lautet: {summe} und der Durchschnitt lautet: {Durchschnitt}.");
         }
     }
 }
