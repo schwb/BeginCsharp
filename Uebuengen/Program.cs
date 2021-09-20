@@ -6,8 +6,7 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            Random k1 = new Random();
-            int Zahl = k1.Next(0, 36);
+            Random k = new Random();
             Console.WriteLine("Wie viel $ besitzen sie?");
             int Besitz1 = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Was ist ihr erster Einsatz?");
@@ -19,24 +18,27 @@ namespace Uebuengen
             while (Besitz > 0 && weiterspielen)
             {
                 Besitz -= Einsatz;
+
+                int Zahl = k.Next(0, 36);
+
                 if (Zahl != 0 && Zahl % 2 == 0)
                 {
-                    Besitz = Besitz1 + 2 * Einsatz;
+                    Besitz = Besitz + 2 * Einsatz;
                     Gewinn = 1;
                 }
                 else if (Zahl == 0)
                 {
-                    Besitz = Besitz1;
+                    //Besitz = Besitz;
                     Gewinn = 0;
                 }
                 else
                 {
-                    Besitz = Besitz1 - Einsatz;
+                    //Besitz = Besitz1 - Einsatz;
                     Gewinn = 0;
                 }
                 Console.WriteLine($"Anzahl des Spiels: {AnzahlS}, Geworfene Zahl: {Zahl}, Dein Einsatz: {Einsatz}, Kapital davor: {Besitz1}, Kapital danach: {Besitz}");
-                Random k = new Random();
-                Zahl = k.Next(0, 36);
+                Besitz1 = Besitz;
+
                 AnzahlS++;
                 if (Besitz >= 10000 && Gewinn == 1)
                 {
@@ -72,7 +74,6 @@ namespace Uebuengen
                 {
                     weiterspielen = false;
                 }
-                Besitz1 = Besitz;
                 if (Einsatz > 1000)
                 {
                     Einsatz = 1000;
