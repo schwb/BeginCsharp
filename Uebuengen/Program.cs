@@ -7,7 +7,7 @@ namespace Uebuengen
         static void Main(string[] args)
         {
             Random k1 = new Random();
-            int Zahl1 = k1.Next(0, 36);
+            int Zahl = k1.Next(0, 36);
             Console.WriteLine("Wie viel $ besitzen sie?");
             int Besitz1 = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Was ist ihr erster Einsatz?");
@@ -15,26 +15,26 @@ namespace Uebuengen
             int Gewinn = 0;
             int AnzahlS = 1;
             int Besitz = Besitz1;
-            int a = 0;
-            int Zahl = Zahl1;
-            while(Besitz>0 && a==0)
+            bool weiterspielen = true;
+            while (Besitz > 0 && weiterspielen)
             {
-            if (Zahl != 0 && Zahl % 2 == 0)
-            {
-                Besitz = Besitz1 + 2 * Einsatz;
-                Gewinn = 1;
-            }
-            else if (Zahl == 0)
-            {
-                Besitz = Besitz1;
+                Besitz -= Einsatz;
+                if (Zahl != 0 && Zahl % 2 == 0)
+                {
+                    Besitz = Besitz1 + 2 * Einsatz;
+                    Gewinn = 1;
+                }
+                else if (Zahl == 0)
+                {
+                    Besitz = Besitz1;
                     Gewinn = 0;
-            }
-            else
-            {
-                Besitz = Besitz1 - Einsatz;
+                }
+                else
+                {
+                    Besitz = Besitz1 - Einsatz;
                     Gewinn = 0;
-            }
-            Console.WriteLine($"Anzahl des Spiels: {AnzahlS}, Geworfene Zahl: {Zahl}, Dein Einsatz: {Einsatz}, Kapital davor: {Besitz1}, Kapital danach: {Besitz}");
+                }
+                Console.WriteLine($"Anzahl des Spiels: {AnzahlS}, Geworfene Zahl: {Zahl}, Dein Einsatz: {Einsatz}, Kapital davor: {Besitz1}, Kapital danach: {Besitz}");
                 Random k = new Random();
                 Zahl = k.Next(0, 36);
                 AnzahlS++;
@@ -46,11 +46,11 @@ namespace Uebuengen
                 {
                     Einsatz = Einsatz * 2;
                 }
-                else if (Besitz <10000 && Einsatz * 2 <= Besitz)
+                else if (Besitz < 10000 && Einsatz * 2 <= Besitz)
                 {
                     Einsatz = 10000 - Besitz;
                     Einsatz = Einsatz * 2;
-                    if(Einsatz>Besitz)
+                    if (Einsatz > Besitz)
                     {
                         Einsatz = Besitz;
                     }
@@ -59,21 +59,21 @@ namespace Uebuengen
                 {
                     Einsatz = 1000;
                 }
-                else if (Besitz <=1000)
+                else if (Besitz <= 1000)
                 {
                     Einsatz = Besitz;
                 }
                 Console.WriteLine("Möchten sie nochmal spielen? (ja, nein)");
-                if(Console.ReadLine()=="ja")
+                if (Console.ReadLine() == "ja")
                 {
-                    a = 0;
+                    weiterspielen = true;
                 }
                 else
                 {
-                    a = 1;
+                    weiterspielen = false;
                 }
                 Besitz1 = Besitz;
-                if (Einsatz>1000)
+                if (Einsatz > 1000)
                 {
                     Einsatz = 1000;
                 }
