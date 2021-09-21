@@ -20,13 +20,12 @@ namespace Uebuengen
             else
             {
                 int summe = 0;
-                int Abziehen = -1;
-                for (int Index=0;summe<Eingabe;Index++)
+                int Index = 0;
+                for (Index=0;summe<Eingabe;Index++)
                 {
                     summe += Index;
-                    Abziehen += 1;
                 }
-                summe = summe - Abziehen;
+                summe = summe - (Index-1);
                 return summe;
             }
         }
