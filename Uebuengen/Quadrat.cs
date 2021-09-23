@@ -9,17 +9,18 @@ namespace Uebuengen
     class Quadrat
     {
         public double Seitenlänge { get; set; }
-        public double Umfang(double Seitenlänge)
+        public double Umfang()
         {
             return (4 * Seitenlänge);
         }
-        public double Fläche(double Seitenlänge)
+        public double Fläche()
         {
             return (Seitenlänge * Seitenlänge);
         }
         public override string ToString()
         {
-            return $"Das Quadrat hat den Umfang {Umfang(Seitenlänge)} und den Flächeninhalt {Fläche(Seitenlänge)}.";
+            //So gibt man den Text innerhalb der Klasse aus. ToString muss dann nur noch aufgerufen werden, um Text auszugeben.
+            return $"Das Quadrat hat den Umfang {Umfang()} und den Flächeninhalt {Fläche()}.";
         }
     }
 }
