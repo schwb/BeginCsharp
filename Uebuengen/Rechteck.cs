@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Uebuengen
 {
-    class Rechteck
+    public class Rechteck: IGraphicObjects
     {
+        public string Name { get; set; }
         public double Seitenlänge1 { get; set; }
         public double Seitenlänge2 { get; set; }
         public double Umfang()

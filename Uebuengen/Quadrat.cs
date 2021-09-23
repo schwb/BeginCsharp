@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Uebuengen
 {
-    class Quadrat
+    public class Quadrat: IGraphicObjects//Hierdurch wird das Interface IGraphicobjects
+        //in der Klasse Quadrat implementiert.
     {
         public double Seitenlänge { get; set; }
+        public string Name { get; set; }
         public double Umfang()
         {
             return (4 * Seitenlänge);

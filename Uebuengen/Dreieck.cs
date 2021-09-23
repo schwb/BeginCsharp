@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Uebuengen
 {
-    class Dreieck
+    public class Dreieck: IGraphicObjects
     {
+        public string Name { get; set; }
         public double Seite1 { get; set; }
         public double Seite2 { get; set; }
         public double Seite3 { get; set; }
