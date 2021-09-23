@@ -18,10 +18,14 @@ namespace Uebuengen
             Quadrat Zwei = new Quadrat();
             Zwei.Seitenlänge = 10;
             Console.WriteLine(Zwei.ToString());
+            //So gibt man den Text außerhalb der Klasse aus
+            Console.WriteLine($"Das Quadrat hat den Umfang {Zwei.Umfang()} und den Flächeninhalt {Zwei.Fläche()}.");
             Rechteck Drei = new Rechteck();
             Drei.Seitenlänge1 = 15;
             Drei.Seitenlänge2 = 25;
             Console.WriteLine(Drei.ToString());
+            //oder ohne ToString:
+            Console.WriteLine($"Das Rechteck hat den Umfang {Drei.Umfang()} und den Flächeninhalt {Drei.Fläche()}.");
         }
     }
 }
