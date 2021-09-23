@@ -8,22 +8,31 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            string[,] Aquarium = new string[30, 30];
-            for (int i = 0; i < Aquarium.GetLength(0);i++)
+            int summe = 0;
+            int Position = 0;
+            Random r = new Random();
+            int[,] Zahlen = new int[5, 7];
+            for(int i=0;i<Zahlen.GetLength(0);i++)
             {
-                for(int j = 0; j<Aquarium.GetLength(1);j++)
+                for(int j=0;j<Zahlen.GetLength(1);j++)
                 {
-                    if (j == 0 || j == Aquarium.GetLength(0) - 1)
+                   if(i==Zahlen.GetLength(0)-1)
                     {
-                        Console.Write("|");
-                    }
-                    else if (i == Aquarium.GetLength(0)-1)
-                    {
-                        Console.Write("_");
+                        summe = 0;
+                        for(int k=0;k<Zahlen.GetLength(0)-1;k++)
+                        {
+                            summe += Zahlen[k, Position];
+                        }
+                        Zahlen[Zahlen.GetLength(0) - 1, Position]=summe;
+                        Position += 1;
+                        string sum = Convert.ToString(summe);
+                        Console.Write($"{sum.PadRight(5,' ')}");
                     }
                     else
                     {
-                        Console.Write("~");
+                        Zahlen[i,j]=r.Next(1, 99);
+                        string Zahl= Convert.ToString(Zahlen[i, j]);
+                        Console.Write($"{Zahl.PadRight(5, ' ')}");
                     }
                 }
                 Console.Write("\n");
