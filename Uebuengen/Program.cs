@@ -8,45 +8,31 @@ namespace Uebuengen
     {
         static void Main(string[] args)
         {
-            int Position = 0;
-            Random r = new Random();
-            int[,] Zahlen = new int[5,7];
-            for(int i=0;i<Zahlen.GetLength(0);i++)
-            {
-                if (i == Zahlen.GetLength(0) - 2)
-                {
-                    for (int w = 0; w < (Zahlen.GetLength(1)-1)*6; w++)
-                    {
-                        Console.Write("-");
-                    }
-                    Console.Write("\n");
-                }
-                else
-                {
-                    for (int j = 0; j < Zahlen.GetLength(1); j++)
-                    {
-                        if (i == Zahlen.GetLength(0) - 1)
-                        {
-                            int summe = 0;
-                            for (int k = 0; k < Zahlen.GetLength(0) - 1; k++)
-                            {
-                                summe += Zahlen[k, Position];
-                            }
-                            Zahlen[Zahlen.GetLength(0) - 1, Position] = summe;
-                            Position += 1;
-                            string sum = Convert.ToString(summe);
-                            Console.Write($"{sum.PadRight(5, ' ')}");
-                        }
-                        else
-                        {
-                            Zahlen[i, j] = r.Next(1, 99);
-                            string Zahl = Convert.ToString(Zahlen[i, j]);
-                            Console.Write($"{Zahl.PadRight(5, ' ')}");
-                        }
-                    }
-                    Console.Write("\n");
-                }
-            }
+            /*Vererbung: 
+            Erstelle eine Klasse Tier. Ein Tier hat einen Namen, Alter, Geschwindigkeit, Bool Hunger, 
+            Methode GibLaut, Art, Methode Essen, Methode Bewegen,  
+            Erstelle eine Klasse Hund, Katze, Maus die vom Tier erben. Überschreibe wenn nötig die ein oder  andere Methode. */
+            Hund Hund = new Hund("Michael");
+            Hund.Alter = 12;
+            Hund.Geschwindigkeit = "schnell";
+            Hund.Hunger = true;
+            Hund.Art = "Schäferhund";
+            Hund.Tiergeräusch = "Wauwau";
+            Console.WriteLine($"Der {Hund.Art} {Hund.Name} ist {Hund.Alter} Jahre alt und ruft laut {Hund.GibLaut()}. {Hund.bewegen()} und {Hund.Essen()}.");
+            Maus Maus = new Maus("Ilse");
+            Maus.Alter = 5;
+            Maus.Geschwindigkeit = "rasend";
+            Maus.Hunger = false;
+            Maus.Art = "Spitzmaus";
+            Maus.Tiergeräusch = "Pipspips";
+            Console.WriteLine($"Die {Maus.Art} {Maus.Name} ist {Maus.Alter} Jahre alt und ruft laut {Maus.GibLaut()}. {Maus.bewegen()} und {Maus.Essen()}.");
+            Katze Katze = new Katze("Mischell");
+            Katze.Alter = 8;
+            Katze.Geschwindigkeit = "gemächlich";
+            Katze.Hunger = true;
+            Katze.Art = "Wildkatze";
+            Katze.Tiergeräusch = "Miau";
+            Console.WriteLine($"Die {Katze.Art} {Katze.Name} ist {Katze.Alter} Jahre alt und ruft laut {Katze.GibLaut()}. {Katze.bewegen()} und {Katze.Essen()}.");
         }
     }
 }
