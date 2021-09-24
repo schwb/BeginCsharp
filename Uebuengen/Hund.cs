@@ -19,5 +19,13 @@ namespace Uebuengen
         {
 
         }
+        /// <summary>
+        /// Puts all methods and properties into a string and puts it as a complete text with added text out.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"Der {Art} {Name} ist {Alter} Jahre alt und ruft laut {GibLaut()}. {bewegen()} und {Essen()}.";
+        }
     }
 }

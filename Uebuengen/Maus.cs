@@ -19,6 +19,11 @@ namespace Uebuengen
         {
 
         }
+        /// <summary>
+        /// Takes property "Geschwindigkeit" and "Name" and returns "{Name} bewegt sich {Geschwindigkeit} fort, 
+        /// da sie vor der hungrigen Katze auf der Flucht ist"
+        /// </summary>
+        /// <returns></returns>
         public override string bewegen()
         {
             return $"{Name} bewegt sich {Geschwindigkeit} fort, da sie vor der hungrigen Katze auf der Flucht ist";

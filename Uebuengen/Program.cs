@@ -18,7 +18,7 @@ namespace Uebuengen
             Hund.Hunger = true;
             Hund.Art = "Schäferhund";
             Hund.Tiergeräusch = "Wauwau";
-            Console.WriteLine($"Der {Hund.Art} {Hund.Name} ist {Hund.Alter} Jahre alt und ruft laut {Hund.GibLaut()}. {Hund.bewegen()} und {Hund.Essen()}.");
+            Console.WriteLine(Hund.ToString());
             Maus Maus = new Maus("Ilse");
             Maus.Alter = 5;
             Maus.Geschwindigkeit = "rasend";
