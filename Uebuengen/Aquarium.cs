@@ -1,0 +1,158 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Uebuengen
+{
+    class Aquarium
+    {
+        private int _broad = 30;
+
+        private int _height = 10;
+       
+        public int height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                _height = value;
+            }
+        }
+        public int broad
+        {
+            get
+            {
+                return _broad;
+            }
+            set
+            {
+                _broad = value;
+            }
+        }
+        public int appearheight { get; set; }
+        public int appearbroad { get; set; }
+        public int appearanceleftright { get; set; }
+        public string[,] aquarium;
+        public void filltheaquarium()
+        {
+            aquarium = new string[height, broad];
+
+            for (int Index1 = 0; Index1 < height; Index1++)
+            {
+                for (int Index2 = 0; Index2 < broad; Index2++)
+                {
+                    if (Index2 == 0 || Index2 == broad - 1)
+                    {
+                        if (Index1 == height - 1)
+                        {
+                            aquarium[Index1, Index2] = "+";
+                        }
+                        else
+                        {
+                            aquarium[Index1, Index2] = "|";
+                        }
+                    }
+                    else if (Index1 == height - 1)
+                    {
+                        aquarium[Index1, Index2] = "_";
+                    }
+                    else
+                    {
+                        aquarium[Index1, Index2] = " ";
+                    }
+                }
+            }
+        }
+        public void fillinfishes()
+        {
+            Random r = new Random();
+            int wichfish;
+            for (int Index = 0; Index < height; Index++)
+            {
+                wichfish = r.Next(0, 3);
+                if (wichfish == 0)
+                {
+                    swordfish swordfish1 = new swordfish();
+                    fillinfish(swordfish1);
+                }
+                else if(wichfish == 1)
+                {
+                    blowfish blowfish1 = new blowfish();
+                    fillinfish(blowfish1);
+                }
+                else if(wichfish == 2)
+                {
+                    shark shark1 = new shark();
+                    fillinfish(shark1);
+                }
+                else
+                {
+                    carp carp1 = new carp();
+                    fillinfish(carp1);
+                }
+            } 
+        }
+        public void fillinfish(universal_fish fish)
+        {
+            Random r = new Random();
+            appearanceleftright = r.Next(0, 100);
+            appearheight = r.Next(0, height - 2);
+            appearbroad = r.Next(1, broad - 1 - fish.appearancefishleft.Length);
+            if (appearanceleftright%2==0)
+            {
+                foreach (char sign in fish.appearancefishleft)
+                {
+                    aquarium[appearheight, appearbroad] = Convert.ToString(sign);
+                    appearbroad += 1;
+                }
+                fish.startheight = appearheight;
+                fish.startbroad = appearbroad;
+                fish.leftright = "left";
+            }
+            else
+            {
+                foreach (char sign in fish.appearancefishright)
+                {
+                    aquarium[appearheight, appearbroad] = Convert.ToString(sign);
+                    appearbroad += 1;
+                }
+                fish.startheight = appearheight;
+                fish.startbroad = appearbroad;
+                fish.leftright = "right";
+            }
+        }
+        public void movefish(universal_fish fish)
+        {
+            for (int Index=0; Index<height; Index++)
+            {
+                for (int Index2=0; Index2<broad; Index2++)
+                {
+                    
+                }
+            }
+        }
+        public void output()
+        {
+            for (int Index1 = 0; Index1 < height; Index1++)
+            {
+                for (int Index2 = 0; Index2 < broad; Index2++)
+                {
+                    if (Index2 == broad - 1)
+                    {
+                        Console.Write(aquarium[Index1, Index2]);
+                        Console.Write("\n");
+                    }
+                    else
+                    {
+                        Console.Write(aquarium[Index1, Index2]);
+                    }
+                }
+            }
+        }
+    }
+}
