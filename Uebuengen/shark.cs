@@ -10,5 +10,34 @@ namespace Uebuengen
     {
         public override string appearancefishleft { get; set; } = "<///====><";
         public override string appearancefishright { get; set; } = "><====///>";
+        public override void schwimmtiefe()
+        {
+            Random r = new Random();
+            int highlow = r.Next(0, 99);
+            int probability = r.Next(1, 100);
+            if (probability < 26)
+            {
+                if (highlow % 2 == 0)
+                {
+                    if (appearheight == 0)
+                    {
+                    }
+                    else
+                    {
+                        appearheight = appearheight - 1;
+                    }
+                }
+                else
+                {
+                    if (appearheight == (maxheight - 2))
+                    {
+                    }
+                    else
+                    {
+                        appearheight = appearheight + 1;
+                    }
+                }
+            }
+        }
     }
 }

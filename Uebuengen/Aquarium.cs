@@ -68,8 +68,11 @@ namespace Uebuengen
                 }
             }
         }
+        int Arrayposition = 0;
+        universal_fish[] allfishes;
         public void fillinfishes()
         {
+            allfishes = new universal_fish[height];
             Random r = new Random();
             int wichfish;
             for (int Index = 0; Index < height; Index++)
@@ -80,12 +83,12 @@ namespace Uebuengen
                     swordfish swordfish1 = new swordfish();
                     fillinfish(swordfish1);
                 }
-                else if(wichfish == 1)
+                else if (wichfish == 1)
                 {
                     blowfish blowfish1 = new blowfish();
                     fillinfish(blowfish1);
                 }
-                else if(wichfish == 2)
+                else if (wichfish == 2)
                 {
                     shark shark1 = new shark();
                     fillinfish(shark1);
@@ -99,6 +102,7 @@ namespace Uebuengen
         }
         public void fillinfish(universal_fish fish)
         {
+            fish.maxheight = height;
             Random r = new Random();
             appearanceleftright = r.Next(0, 100);
             appearheight = r.Next(0, height - 2);
@@ -110,9 +114,12 @@ namespace Uebuengen
                     aquarium[appearheight, appearbroad] = Convert.ToString(sign);
                     appearbroad += 1;
                 }
-                fish.startheight = appearheight;
-                fish.startbroad = appearbroad;
+                allfishes[Arrayposition] = fish;
+                Arrayposition += 1;
+                fish.appearbroad = appearbroad - fish.appearancefishleft.Length -1;
+                fish.appearheight = appearheight;
                 fish.leftright = "left";
+
             }
             else
             {
@@ -121,18 +128,49 @@ namespace Uebuengen
                     aquarium[appearheight, appearbroad] = Convert.ToString(sign);
                     appearbroad += 1;
                 }
-                fish.startheight = appearheight;
-                fish.startbroad = appearbroad;
+                allfishes[Arrayposition] = fish;
+                Arrayposition += 1;
+                fish.appearbroad = appearbroad - fish.appearancefishleft.Length + 1;
+                fish.appearheight = appearheight;
                 fish.leftright = "right";
             }
         }
-        public void movefish(universal_fish fish)
+        public void movefishes()
         {
-            for (int Index=0; Index<height; Index++)
+            for (int Index = 0; Index < height; Index++)
             {
-                for (int Index2=0; Index2<broad; Index2++)
+                allfishes[Index].schwimmtiefe();
+                if(allfishes[Index].appearbroad == 0)
                 {
-                    
+                    allfishes[Index].appearbroad = 1;
+                    allfishes[Index].leftright = "right";
+                }
+                else if(allfishes[Index].appearbroad > (broad- allfishes[Index].appearancefishleft.Length)-2)
+                {
+                    allfishes[Index].appearbroad = (broad- allfishes[Index].appearancefishleft.Length)-1;
+                    allfishes[Index].leftright = "left";
+                }
+                else
+                {
+                    if (allfishes[Index].leftright == "left")
+                    {
+                        foreach (char sign in allfishes[Index].appearancefishleft)
+                        {
+                            aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
+                            allfishes[Index].appearbroad += 1;
+                        }
+                        allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length + 1);
+                    }
+                    else
+                    {
+                        foreach (char sign in allfishes[Index].appearancefishright)
+                        {
+
+                            aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
+                            allfishes[Index].appearbroad += 1;
+                        }
+                        allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length - 3);
+                    }
                 }
             }
         }

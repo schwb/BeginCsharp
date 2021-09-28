@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace Uebuengen
 {
@@ -41,11 +42,17 @@ namespace Uebuengen
             }
             fischtank.broad = Convert.ToInt32(values2);
             string Bedingung = "unendlich";
-            while (Bedingung == "unendlich")
+            fischtank.filltheaquarium();
+            fischtank.fillinfishes();
+            fischtank.output();
+            Thread.Sleep(200);
+            while(Bedingung == "unendlich")
             {
+                Console.Clear();
                 fischtank.filltheaquarium();
-                fischtank.fillinfishes();
+                fischtank.movefishes();
                 fischtank.output();
+                Thread.Sleep(200);
             }
         }
     }

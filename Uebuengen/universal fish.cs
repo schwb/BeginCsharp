@@ -10,8 +10,13 @@ namespace Uebuengen
     {
         public virtual string appearancefishleft { get; set; }
         public virtual string appearancefishright { get; set; }
-        public int startheight { get; set; }
-        public int startbroad { get; set; }
+        public int appearheight { get; set; }
+        public int appearbroad { get; set; }
         public string leftright { get; set; }
+        public int maxheight { get; set; }
+        public virtual void schwimmtiefe()
+        {
+        }
+
     }
 }
