@@ -147,7 +147,7 @@ namespace Uebuengen
                 }
                 else if(allfishes[Index].appearbroad > (broad- allfishes[Index].appearancefishleft.Length)-2)
                 {
-                    allfishes[Index].appearbroad = (broad- allfishes[Index].appearancefishleft.Length)-1;
+                    allfishes[Index].appearbroad = (broad- allfishes[Index].appearancefishleft.Length)-2;
                     allfishes[Index].leftright = "left";
                 }
                 else

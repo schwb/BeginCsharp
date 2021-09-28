@@ -45,14 +45,14 @@ namespace Uebuengen
             fischtank.filltheaquarium();
             fischtank.fillinfishes();
             fischtank.output();
-            Thread.Sleep(200);
+            Thread.Sleep(400);
             while(Bedingung == "unendlich")
             {
                 Console.Clear();
                 fischtank.filltheaquarium();
                 fischtank.movefishes();
                 fischtank.output();
-                Thread.Sleep(200);
+                Thread.Sleep(400);
             }
         }
     }
