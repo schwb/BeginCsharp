@@ -189,6 +189,9 @@ namespace Aquariumproject
                         }
                     }
                 }
+            }
+            for (int Index = 0; Index < allfishes.Length; Index++)
+            {
                 allfishes[Index].schwimmtiefe();
                 if (allfishes[Index].appearbroad == 0)
                 {
@@ -281,7 +284,6 @@ namespace Aquariumproject
                 }
             }
         }
-
         public void fillindinosour(dinosour fish)
         {
             bool Bedingung = false;

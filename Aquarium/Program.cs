@@ -49,22 +49,22 @@ namespace Aquariumproject
             fischtank.filltheaquarium();
             fischtank.movefishes();
             fischtank.output();
-            Thread.Sleep(700);
-            //fischtank.fillindinosour(Riesenkroko);
+            Thread.Sleep(100);
+            fischtank.fillindinosour(Riesenkroko);
             while (Bedingung == "unendlich")
             {
                 Console.Clear();
                 fischtank.filltheaquarium();
-                /*fischtank.movedinosour(Riesenkroko);
                 fischtank.movedinosour(Riesenkroko);
                 fischtank.movedinosour(Riesenkroko);
                 fischtank.movedinosour(Riesenkroko);
                 fischtank.movedinosour(Riesenkroko);
                 fischtank.movedinosour(Riesenkroko);
-                fischtank.movedinosour(Riesenkroko);*/
+                fischtank.movedinosour(Riesenkroko);
+                fischtank.movedinosour(Riesenkroko);
                 fischtank.movefishes();
                 fischtank.output();
-                Thread.Sleep(700);
+                Thread.Sleep(100);
             }
         }
     }
