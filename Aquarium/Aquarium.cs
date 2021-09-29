@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uebuengen
+namespace Aquariumproject
 {
     class Aquarium
     {
@@ -145,7 +145,7 @@ namespace Uebuengen
                     {
                         if (allfishes[Index2].leftright == "right" && allfishes[Index2].appearancefishleft != "")
                         {
-                            if (allfishes[Index].appearbroad == (allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length))
+                            if (allfishes[Index].appearbroad == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length)
                             {
                                 if (allfishes[Index].appearancefishleft.Length > allfishes[Index2].appearancefishleft.Length
                                     && allfishes[Index2].appearheight == allfishes[Index].appearheight)
@@ -170,7 +170,7 @@ namespace Uebuengen
                     {
                         if (allfishes[Index2].leftright == "left" && allfishes[Index2].appearancefishleft != "")
                         {
-                            if (allfishes[Index2].appearbroad == (allfishes[Index].appearbroad + allfishes[Index].appearancefishleft.Length))
+                            if (allfishes[Index2].appearbroad == allfishes[Index].appearbroad + allfishes[Index].appearancefishleft.Length)
                             {
                                 if (allfishes[Index].appearancefishleft.Length > allfishes[Index2].appearancefishleft.Length
                                     && allfishes[Index2].appearheight == allfishes[Index].appearheight)
@@ -195,9 +195,9 @@ namespace Uebuengen
                     allfishes[Index].appearbroad = 1;
                     allfishes[Index].leftright = "right";
                 }
-                else if (allfishes[Index].appearbroad > (broad - allfishes[Index].appearancefishleft.Length) - 2)
+                else if (allfishes[Index].appearbroad > broad - allfishes[Index].appearancefishleft.Length - 2)
                 {
-                    allfishes[Index].appearbroad = (broad - allfishes[Index].appearancefishleft.Length) - 2;
+                    allfishes[Index].appearbroad = broad - allfishes[Index].appearancefishleft.Length - 2;
                     allfishes[Index].leftright = "left";
                 }
                 else
@@ -211,7 +211,7 @@ namespace Uebuengen
                                 aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
                                 allfishes[Index].appearbroad += 1;
                             }
-                            allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length + 1);
+                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length + 1;
                         }
                         else if (allfishes[Index].appearheight + 1! > height - 3 &&
                             aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad] == " " &&
@@ -224,7 +224,7 @@ namespace Uebuengen
                                 aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
                                 allfishes[Index].appearbroad += 1;
                             }
-                            allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length + 1);
+                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length + 1;
                         }
                         else if (allfishes[Index].appearheight! < 2 &&
                             aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad] == " " &&
@@ -237,7 +237,7 @@ namespace Uebuengen
                                 aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
                                 allfishes[Index].appearbroad += 1;
                             }
-                            allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length + 1);
+                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length + 1;
                         }
                     }
                     else
@@ -249,7 +249,7 @@ namespace Uebuengen
                                 aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
                                 allfishes[Index].appearbroad += 1;
                             }
-                            allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length - 3);
+                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length - 3;
                         }
                         else if (allfishes[Index].appearheight + 1! > height - 3 &&
                             aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad] == " " &&
@@ -262,7 +262,7 @@ namespace Uebuengen
                                 aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
                                 allfishes[Index].appearbroad += 1;
                             }
-                            allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length - 3);
+                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length - 3;
                         }
                         else if (allfishes[Index].appearheight! < 2 &&
                             aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad] == " " &&
@@ -275,7 +275,7 @@ namespace Uebuengen
                                 aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
                                 allfishes[Index].appearbroad += 1;
                             }
-                            allfishes[Index].appearbroad -= (allfishes[Index].appearancefishleft.Length - 3);
+                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length - 3;
                         }
                     }
                 }
@@ -289,13 +289,13 @@ namespace Uebuengen
             {
                 Random r = new Random();
                 appearheight = r.Next(1, height - 2);
-                appearbroad = r.Next(1, broad - fish.appearancefishright1.Length-2);
-                if (aquarium[appearheight, appearbroad] == " " && aquarium[appearheight-1, appearbroad]== " "
-                    && aquarium[appearheight, appearbroad+3] == " " && aquarium[appearheight - 1, appearbroad+3] == " "
-                    && aquarium[appearheight, appearbroad+6] == " " && aquarium[appearheight - 1, appearbroad+6] == " "
-                    && aquarium[appearheight, appearbroad+9] == " " && aquarium[appearheight - 1, appearbroad+9] == " "
-                    && aquarium[appearheight, appearbroad+12] == " " && aquarium[appearheight - 1, appearbroad+12] == " "
-                    && aquarium[appearheight, appearbroad+15] == " " && aquarium[appearheight - 1, appearbroad+15] == " "
+                appearbroad = r.Next(1, broad - fish.appearancefishright1.Length - 2);
+                if (aquarium[appearheight, appearbroad] == " " && aquarium[appearheight - 1, appearbroad] == " "
+                    && aquarium[appearheight, appearbroad + 3] == " " && aquarium[appearheight - 1, appearbroad + 3] == " "
+                    && aquarium[appearheight, appearbroad + 6] == " " && aquarium[appearheight - 1, appearbroad + 6] == " "
+                    && aquarium[appearheight, appearbroad + 9] == " " && aquarium[appearheight - 1, appearbroad + 9] == " "
+                    && aquarium[appearheight, appearbroad + 12] == " " && aquarium[appearheight - 1, appearbroad + 12] == " "
+                    && aquarium[appearheight, appearbroad + 15] == " " && aquarium[appearheight - 1, appearbroad + 15] == " "
                     && aquarium[appearheight, appearbroad + 18] == " " && aquarium[appearheight - 1, appearbroad + 18] == " "
                     && aquarium[appearheight, appearbroad + 21] == " " && aquarium[appearheight - 1, appearbroad + 21] == " "
                     && aquarium[appearheight, appearbroad + 24] == " " && aquarium[appearheight - 1, appearbroad + 24] == " ")
@@ -328,11 +328,11 @@ namespace Uebuengen
                 {
                     if (allfishes[Index2].appearancefishleft != "")
                     {
-                        if (fish.appearbroad == (allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length)
-                            || fish.appearbroad-1 == (allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length)
-                            || fish.appearbroad - 2 == (allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length))
+                        if (fish.appearbroad == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length
+                            || fish.appearbroad - 1 == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length
+                            || fish.appearbroad - 2 == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length)
                         {
-                            if (fish.appearheight == allfishes[Index2].appearheight || fish.appearheight -1 == allfishes[Index2].appearheight)
+                            if (fish.appearheight == allfishes[Index2].appearheight || fish.appearheight - 1 == allfishes[Index2].appearheight)
                             {
                                 allfishes[Index2].appearancefishleft = "";
                                 allfishes[Index2].appearancefishright = "";
@@ -349,9 +349,9 @@ namespace Uebuengen
                 {
                     if (allfishes[Index2].appearancefishleft != "")
                     {
-                        if (allfishes[Index2].appearbroad == (fish.appearbroad + fish.appearancefishright1.Length)
-                            ||allfishes[Index2].appearbroad -1 == (fish.appearbroad + fish.appearancefishright1.Length)
-                            || allfishes[Index2].appearbroad - 2 == (fish.appearbroad + fish.appearancefishright1.Length))
+                        if (allfishes[Index2].appearbroad == fish.appearbroad + fish.appearancefishright1.Length
+                            || allfishes[Index2].appearbroad - 1 == fish.appearbroad + fish.appearancefishright1.Length
+                            || allfishes[Index2].appearbroad - 2 == fish.appearbroad + fish.appearancefishright1.Length)
                         {
                             if (fish.appearheight == allfishes[Index2].appearheight || fish.appearheight - 1 == allfishes[Index2].appearheight)
                             {
@@ -367,7 +367,7 @@ namespace Uebuengen
             if (fish.leftright == "right")
             {
                 fish.schwimmtiefe();
-                if (appearbroad > height+23)
+                if (appearbroad > height + 23)
                 {
                     fish.leftright = "left";
                 }
