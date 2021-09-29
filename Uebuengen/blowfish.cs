@@ -19,7 +19,7 @@ namespace Uebuengen
             {
                 if (highlow % 2 == 0)
                 {
-                    if (appearheight == 0)
+                    if (appearheight == 0||appearheight == 1)
                     {
                     }
                     else

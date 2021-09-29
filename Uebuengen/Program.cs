@@ -40,19 +40,33 @@ namespace Uebuengen
                 values2 = Console.ReadLine();
                 success = Int32.TryParse(values2, out number);
             }
+            dinosour Riesenkroko = new dinosour();
             fischtank.broad = Convert.ToInt32(values2);
             string Bedingung = "unendlich";
             fischtank.filltheaquarium();
             fischtank.fillinfishes();
             fischtank.output();
-            Thread.Sleep(400);
-            while(Bedingung == "unendlich")
+            Thread.Sleep(300);
+            Console.Clear();
+            fischtank.filltheaquarium();
+            fischtank.movefishes();
+            fischtank.output();
+            Thread.Sleep(700);
+            //fischtank.fillindinosour(Riesenkroko);
+            while (Bedingung == "unendlich")
             {
                 Console.Clear();
                 fischtank.filltheaquarium();
+                /*fischtank.movedinosour(Riesenkroko);
+                fischtank.movedinosour(Riesenkroko);
+                fischtank.movedinosour(Riesenkroko);
+                fischtank.movedinosour(Riesenkroko);
+                fischtank.movedinosour(Riesenkroko);
+                fischtank.movedinosour(Riesenkroko);
+                fischtank.movedinosour(Riesenkroko);*/
                 fischtank.movefishes();
                 fischtank.output();
-                Thread.Sleep(400);
+                Thread.Sleep(700);
             }
         }
     }
