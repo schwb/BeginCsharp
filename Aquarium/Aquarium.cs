@@ -138,31 +138,31 @@ namespace Aquariumproject
             //appearanceleftright defines through a random if the fish is spawned looking to the right or the left.
             int appearanceleftright;
             appearanceleftright = r.Next(0, 100);
-            string beenden = "beenden";
+            bool beenden = false;
             //This while condition checks if one fish covers another and produces new coordinates until none fish is covered by another.
-            while (beenden == "beenden")
+            while (beenden == false)
             {
-                string beenden1 = "beenden";
+                bool beenden1 = false;
                 //The coordinates of a fish are set randomly.
                 //appearheight has to be bigger than zero, because one other method doesn´t work otherwise.
                 appearheight = r.Next(1, height - 2);
                 appearbroad = r.Next(1, broad - 1 - fish.appearancefishleft.Length);
                 for (int letter = 0; letter < fish.appearancefishleft.Length; letter++)
                 {
-                    if (beenden1 == "beenden")
+                    if (beenden1 == false)
                     {
                         //every coordinate of appearbroad of the shape string of the fish has to be empty before spawning.
                         if (aquarium[appearheight, appearbroad + letter] == " ")
                         {   
                             //if all coordinates are empty the while ribbon should end and the fish will be spawned.
-                            beenden = "stopp";
+                            beenden = true;
                         }
                         else
                         {
                             //if one coordinate is not empty no other has to be checked.
-                            beenden1 = "stopp";
+                            beenden1 = true;
                             //if one coordinate is not empty the while ribbon should restart.
-                            beenden = "beenden";
+                            beenden = false;
                         }
                     }
                 }
@@ -219,7 +219,7 @@ namespace Aquariumproject
                     for (int Index2 = 0; Index2 < allfishes.Length; Index2++)
                     {
                         //Hier werden die bereits gefressenen Fishe von dem fressen ausgeschlossen. Sie können somit nicht nochmal gefressen werden.
-                        if (allfishes[Index2].appearancefishleft != "")
+                        if (allfishes[Index2].appearancefishleft != " ")
                         {
                             //Condition for the broad-coordinates of the fishes
                             if (allfishes[Index].appearbroad == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length
@@ -230,8 +230,8 @@ namespace Aquariumproject
                                     && allfishes[Index2].appearheight == allfishes[Index].appearheight)
                                 {
                                     //The eaten fishes get the new string "", so one can´t see them in the aquarium output.
-                                    allfishes[Index2].appearancefishleft = "";
-                                    allfishes[Index2].appearancefishright = "";
+                                    allfishes[Index2].appearancefishleft = " ";
+                                    allfishes[Index2].appearancefishright = " ";
                                     //The string for the shape of the fish wich ate is made one sign longer through this code.
                                     string linkeworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft[0]);
                                     string rechteworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft);
@@ -251,7 +251,7 @@ namespace Aquariumproject
                     for (int Index2 = 0; Index2 < allfishes.Length; Index2++)
                     {
                         //Hier werden die bereits gefressenen Fishe von dem fressen ausgeschlossen. Sie können somit nicht nochmal gefressen werden.
-                        if (allfishes[Index2].appearancefishleft != "")
+                        if (allfishes[Index2].appearancefishleft != " ")
                         {
                             //Condition for the broad-coordinates of the fishes
                             if (allfishes[Index2].appearbroad == allfishes[Index].appearbroad + allfishes[Index].appearancefishleft.Length
@@ -262,8 +262,8 @@ namespace Aquariumproject
                                     && allfishes[Index2].appearheight == allfishes[Index].appearheight)
                                 {
                                     //The eaten fishes get the new string "", so one can´t see them in the aquarium output.
-                                    allfishes[Index2].appearancefishleft = "";
-                                    allfishes[Index2].appearancefishright = "";
+                                    allfishes[Index2].appearancefishleft = " ";
+                                    allfishes[Index2].appearancefishright = " ";
                                     //The string for the shape of the fish wich ate is made one sign longer through this code.
                                     string linkeworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft[0]);
                                     string rechteworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft);
@@ -279,99 +279,102 @@ namespace Aquariumproject
                 }
             }
         }
+        /// <summary>
+        /// The method movefishes contains all importand aspects to move the fishes step by step. 
+        /// </summary>
         public void movefishes()
         { 
+            //The for ribbon goes through every fish of the array allfishes.
             for (int Index = 0; Index < allfishes.Length; Index++)
             {
+                //First of all the method schwimmtiefe changes the appearheight of the fish depending on the specified probability.
                 allfishes[Index].schwimmtiefe();
+                //In this if-condition the fishes reaching the left side of the aquarium are set one step to the right and turn around.
                 if (allfishes[Index].appearbroad == 0)
                 {
                     allfishes[Index].appearbroad = 1;
                     allfishes[Index].leftright = "right";
                 }
-                else if (allfishes[Index].appearbroad > broad - allfishes[Index].appearancefishleft.Length - 2)
+                //In this if-condition the fishes reaching the right side of the aquarium turn around.
+                else if (allfishes[Index].appearbroad > broad - allfishes[Index].appearancefishleft.Length -2)
                 {
-                    allfishes[Index].appearbroad = broad - allfishes[Index].appearancefishleft.Length - 2;
+                    allfishes[Index].appearbroad = broad - allfishes[Index].appearancefishleft.Length - 1;
                     allfishes[Index].leftright = "left";
                 }
+                /*else
+                {*/
+                //All fishes looking to the left will be moved in the left direction.
+                bool beenden = false;
+                string Veränderung = "ja";
+                //This while condition checks if one fish covers another and produces new coordinates until none fish is covered by another.
+                while (beenden == false)
+                {
+                    bool beenden1 = false;
+                    //The coordinates of a fish are set randomly.
+                    //appearheight has to be bigger than zero, because one other method doesn´t work otherwise.
+                    for (int letter = 0; letter < allfishes[Index].appearancefishleft.Length; letter++)
+                    {
+                        if (beenden1 == false)
+                        {
+                            //every coordinate of appearbroad of the shape string of the fish has to be empty before spawning.
+                            if (aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad + letter] == " ")
+                            {
+                                //if all coordinates are empty the while ribbon should end and the fish will be spawned.
+                                beenden = true;
+                            }
+                            else 
+                            {
+                                //if one coordinate is not empty no other has to be checked.
+                                beenden1 = true;
+                                //if one coordinate is not empty the while ribbon should restart.
+                                beenden = false;
+                                if (allfishes[Index].appearbroad > 1 && Veränderung == "ja")
+                                {
+                                    allfishes[Index].appearbroad -= 1;
+                                    Veränderung = "ja2";
+                                }
+                                else if (allfishes[Index].appearbroad+allfishes[Index].appearancefishleft.Length-2<broad-3 && Veränderung == "ja2")
+                                {
+                                    allfishes[Index].appearbroad += 2;
+                                    Veränderung = "ja3";
+                                }
+                                else if (allfishes[Index].appearheight>0 && Veränderung == "ja3")
+                                {
+                                    allfishes[Index].appearheight -= 1;
+                                    allfishes[Index].appearbroad -= 1;
+                                    Veränderung = "ja4";
+                                }
+                                else if (allfishes[Index].appearheight +2 < height-1 && Veränderung == "ja4")
+                                {
+                                    allfishes[Index].appearheight += 2;
+                                    Veränderung = "ja5";
+                                }
+                                else if (Veränderung == "ja5")
+                                {
+                                    beenden = true;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (allfishes[Index].leftright == "left")
+                {
+                    foreach (char sign in allfishes[Index].appearancefishleft)
+                    {
+                        aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
+                        allfishes[Index].appearbroad += 1;
+                    }
+                    allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length + 1;
+                }
+                //All fishes looking to the right will be moved in the right direction.
                 else
                 {
-                    if (allfishes[Index].leftright == "left")
-                    {
-                        if (aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] == " ")
-                        {
-                            foreach (char sign in allfishes[Index].appearancefishleft)
-                            {
-                                aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
-                                allfishes[Index].appearbroad += 1;
-                            }
-                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length + 1;
-                        }
-                        else if (allfishes[Index].appearheight + 1! > height - 3 &&
-                            aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad] == " " &&
-                            aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad + 3] == " " &&
-                            aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad + 6] == " ")
-                        {
-                            allfishes[Index].appearheight += 1;
-                            foreach (char sign in allfishes[Index].appearancefishleft)
-                            {
-                                aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
-                                allfishes[Index].appearbroad += 1;
-                            }
-                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length + 1;
-                        }
-                        else if (allfishes[Index].appearheight! < 2 &&
-                            aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad] == " " &&
-                           aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad + 3] == " " &&
-                           aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad + 6] == " ")
-                        {
-                            allfishes[Index].appearheight -= 1;
-                            foreach (char sign in allfishes[Index].appearancefishleft)
-                            {
-                                aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
-                                allfishes[Index].appearbroad += 1;
-                            }
-                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length + 1;
-                        }
-                    }
-                    else
-                    {
-                        if (aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad + (allfishes[Index].appearancefishleft.Length - 1)] == " ")
-                        {
-                            foreach (char sign in allfishes[Index].appearancefishright)
-                            {
-                                aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
-                                allfishes[Index].appearbroad += 1;
-                            }
-                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length - 3;
-                        }
-                        else if (allfishes[Index].appearheight + 1! > height - 3 &&
-                            aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad] == " " &&
-                            aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad + 3] == " " &&
-                            aquarium[allfishes[Index].appearheight + 1, allfishes[Index].appearbroad + 6] == " ")
-                        {
-                            allfishes[Index].appearheight += 1;
-                            foreach (char sign in allfishes[Index].appearancefishright)
-                            {
-                                aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
-                                allfishes[Index].appearbroad += 1;
-                            }
-                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length - 3;
-                        }
-                        else if (allfishes[Index].appearheight! < 2 &&
-                            aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad] == " " &&
-                           aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad + 3] == " " &&
-                           aquarium[allfishes[Index].appearheight - 1, allfishes[Index].appearbroad + 6] == " ")
-                        {
-                            allfishes[Index].appearheight -= 1;
-                            foreach (char sign in allfishes[Index].appearancefishright)
-                            {
-                                aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
-                                allfishes[Index].appearbroad += 1;
-                            }
-                            allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length - 3;
-                        }
-                    }
+                foreach (char sign in allfishes[Index].appearancefishright)
+                   {
+                        aquarium[allfishes[Index].appearheight, allfishes[Index].appearbroad] = Convert.ToString(sign);
+                        allfishes[Index].appearbroad += 1;
+                   }
+                        allfishes[Index].appearbroad -= allfishes[Index].appearancefishleft.Length - 3;
                 }
             }
         }
@@ -508,17 +511,23 @@ namespace Aquariumproject
                 }
             }
         }
+        /// <summary>
+        /// The method output implements the output of the aquarium on the console.
+        /// </summary>
         public void output()
         {
+            //The for ribbons go through every field of the muliarray aquarium and write the contents in the console.
             for (int Index1 = 0; Index1 < height; Index1++)
             {
                 for (int Index2 = 0; Index2 < broad; Index2++)
                 {
+                    //after the last field of every line has to be a wordwrap.
                     if (Index2 == broad - 1)
                     {
                         Console.Write(aquarium[Index1, Index2]);
                         Console.Write("\n");
                     }
+                    //each field is written in the console.
                     else
                     {
                         Console.Write(aquarium[Index1, Index2]);
