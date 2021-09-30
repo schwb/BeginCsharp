@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace Aquariumproject
 {
+    /// <summary>
+    /// This class contains all methods for the creation of the aquarium and the fishes.
+    /// </summary>
     class Aquarium
     {
+        //This is to set fix broad and height as required by the first task.
+        /// <summary>
+        /// This determines the broad of the aquarium.
+        /// </summary>
         private int _broad = 30;
 
+        /// <summary>
+        ///  This determines the height of the aquarium.
+        /// </summary>
         private int _height = 10;
 
         public int height
@@ -34,10 +44,25 @@ namespace Aquariumproject
                 _broad = value;
             }
         }
+        /// <summary>
+        /// This property contains the appearheight of a fish in the aquarium.
+        /// </summary>
         public int appearheight { get; set; }
+        /// <summary>
+        /// This property contains the appearbroad of a fish in the aquarium.
+        /// </summary>
         public int appearbroad { get; set; }
-        public int appearanceleftright { get; set; }
+        /// <summary>
+        /// This multiarray contains the whole aquarium.
+        /// </summary>
         public string[,] aquarium;
+        //The method fillinfish needs this integer.
+        int Arrayposition = 0;
+        //This is an array to save every created fish
+        universal_fish[] allfishes;
+        /// <summary>
+        /// This method puts the strings for the empty aquarium into the multiarray aquarium.
+        /// </summary>
         public void filltheaquarium()
         {
             aquarium = new string[height, broad];
@@ -68,8 +93,9 @@ namespace Aquariumproject
                 }
             }
         }
-        int Arrayposition = 0;
-        universal_fish[] allfishes;
+        /// <summary>
+        /// This method decides through a random wich fishes are created and puts them into the method fillinfish.
+        /// </summary>
         public void fillinfishes()
         {
             allfishes = new universal_fish[height];
@@ -77,81 +103,136 @@ namespace Aquariumproject
             int wichfish;
             for (int Index = 0; Index < height; Index++)
             {
-                wichfish = r.Next(0, 3);
-                if (wichfish == 0)
+                wichfish = r.Next(0,100);
+                if (wichfish <25)
                 {
                     swordfish swordfish1 = new swordfish();
                     fillinfish(swordfish1);
                 }
-                else if (wichfish == 1)
+                else if (wichfish <50)
                 {
                     blowfish blowfish1 = new blowfish();
                     fillinfish(blowfish1);
                 }
-                else if (wichfish == 2)
+                else if (wichfish < 75)
                 {
                     shark shark1 = new shark();
                     fillinfish(shark1);
                 }
-                else
+                else if (wichfish < 100)
                 {
                     carp carp1 = new carp();
                     fillinfish(carp1);
                 }
             }
         }
+        /// <summary>
+        /// This methods puts the fishes into the aquarium and saves them in the array allfishes.
+        /// </summary>
+        /// <param name="fish"></param>
         public void fillinfish(universal_fish fish)
         {
+            //Through maxheight every fish knows how high the aquarium is.
             fish.maxheight = height;
             Random r = new Random();
+            //appearanceleftright defines through a random if the fish is spawned looking to the right or the left.
+            int appearanceleftright;
             appearanceleftright = r.Next(0, 100);
-            appearheight = r.Next(1, height - 2);
-            appearbroad = r.Next(1, broad - 1 - fish.appearancefishleft.Length);
-            if (appearanceleftright % 2 == 0)
+            string beenden = "beenden";
+            //This while condition checks if one fish covers another and produces new coordinates until none fish is covered by another.
+            while (beenden == "beenden")
             {
-                foreach (char sign in fish.appearancefishleft)
+                string beenden1 = "beenden";
+                //The coordinates of a fish are set randomly.
+                //appearheight has to be bigger than zero, because one other method doesn´t work otherwise.
+                appearheight = r.Next(1, height - 2);
+                appearbroad = r.Next(1, broad - 1 - fish.appearancefishleft.Length);
+                for (int letter = 0; letter < fish.appearancefishleft.Length; letter++)
                 {
-                    aquarium[appearheight, appearbroad] = Convert.ToString(sign);
-                    appearbroad += 1;
+                    if (beenden1 == "beenden")
+                    {
+                        //every coordinate of appearbroad of the shape string of the fish has to be empty before spawning.
+                        if (aquarium[appearheight, appearbroad + letter] == " ")
+                        {   
+                            //if all coordinates are empty the while ribbon should end and the fish will be spawned.
+                            beenden = "stopp";
+                        }
+                        else
+                        {
+                            //if one coordinate is not empty no other has to be checked.
+                            beenden1 = "stopp";
+                            //if one coordinate is not empty the while ribbon should restart.
+                            beenden = "beenden";
+                        }
+                    }
                 }
-                allfishes[Arrayposition] = fish;
-                Arrayposition += 1;
-                fish.appearbroad = appearbroad - fish.appearancefishleft.Length - 1;
-                fish.appearheight = appearheight;
-                fish.leftright = "left";
+            }
+            //Tis if spawnes the fish swimming to the left direction. Appearanceleftright is set befor by a Random.
+                    if (appearanceleftright % 2 == 0)
+                    {
+                        //the foreach ribbon adds every sign of the fishshape to the aquarium
+                        foreach (char sign in fish.appearancefishleft)
+                        {
+                            aquarium[appearheight, appearbroad] = Convert.ToString(sign);
+                            appearbroad += 1;
+                        }
+                        //The fish has to be added to the fisharray to find it later.
+                        allfishes[Arrayposition] = fish;
+                        //The next fish has to be added at the next position of the array.
+                        Arrayposition += 1;
+                        //to put the fish into the aquarium the next time at one step to the left the data needs to be saved for every single fish.
+                        fish.appearbroad = appearbroad - fish.appearancefishleft.Length - 1;
+                        fish.appearheight = appearheight;
+                        fish.leftright = "left";
 
-            }
-            else
-            {
-                foreach (char sign in fish.appearancefishright)
-                {
-                    aquarium[appearheight, appearbroad] = Convert.ToString(sign);
-                    appearbroad += 1;
+                    }
+                    //This else spawnes the fish swimming to the right direction.
+                    else
+                    {
+                        //the foreach ribbon adds every sign of the fishshape to the aquarium
+                        foreach (char sign in fish.appearancefishright)
+                        {
+                            aquarium[appearheight, appearbroad] = Convert.ToString(sign);
+                            appearbroad += 1;
+                        }
+                        //The fish has to be added to the fisharray to find it later.
+                        allfishes[Arrayposition] = fish;
+                        //The next fish has to be added at the next position of the array.
+                        Arrayposition += 1;
+                        //to put the fish into the aquarium the next time at one step to the right the data needs to be saved for every single fish.
+                        fish.appearbroad = appearbroad - fish.appearancefishleft.Length + 1;
+                        fish.appearheight = appearheight;
+                        fish.leftright = "right";
+                    }
                 }
-                allfishes[Arrayposition] = fish;
-                Arrayposition += 1;
-                fish.appearbroad = appearbroad - fish.appearancefishleft.Length + 1;
-                fish.appearheight = appearheight;
-                fish.leftright = "right";
-            }
-        }
-        public void movefishes()
+        /// <summary>
+        /// In the method eatingfishes the bigger fishes eat the smaller ones and grow one char for every fish they ate.
+        /// </summary>
+        public void eatingfishes()
         {
+            //This for ribbon goes through every fish of the array named allfishes.
             for (int Index = 0; Index < allfishes.Length; Index++)
             {
+                //This if will be implemented by the fishes swimming to the left.
                 if (allfishes[Index].leftright == "left")
                 {
                     for (int Index2 = 0; Index2 < allfishes.Length; Index2++)
                     {
-                        if (allfishes[Index2].leftright == "right" && allfishes[Index2].appearancefishleft != "")
+                        //Hier werden die bereits gefressenen Fishe von dem fressen ausgeschlossen. Sie können somit nicht nochmal gefressen werden.
+                        if (allfishes[Index2].appearancefishleft != "")
                         {
-                            if (allfishes[Index].appearbroad == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length)
+                            //Condition for the broad-coordinates of the fishes
+                            if (allfishes[Index].appearbroad == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length
+                                || allfishes[Index].appearbroad - 1 == allfishes[Index2].appearbroad + allfishes[Index2].appearancefishleft.Length)
                             {
+                                //only a bigger fish can eat the other one (first condition) and the height-coordinates needs to be the same (second condition).
                                 if (allfishes[Index].appearancefishleft.Length > allfishes[Index2].appearancefishleft.Length
                                     && allfishes[Index2].appearheight == allfishes[Index].appearheight)
                                 {
+                                    //The eaten fishes get the new string "", so one can´t see them in the aquarium output.
                                     allfishes[Index2].appearancefishleft = "";
                                     allfishes[Index2].appearancefishright = "";
+                                    //The string for the shape of the fish wich ate is made one sign longer through this code.
                                     string linkeworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft[0]);
                                     string rechteworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft);
                                     allfishes[Index].appearancefishleft = $"{linkeworthälfte1}{rechteworthälfte1}";
@@ -164,19 +245,26 @@ namespace Aquariumproject
                         }
                     }
                 }
+                //This if will be implemented by the fishes swimming to the right.
                 if (allfishes[Index].leftright == "right")
                 {
                     for (int Index2 = 0; Index2 < allfishes.Length; Index2++)
                     {
-                        if (allfishes[Index2].leftright == "left" && allfishes[Index2].appearancefishleft != "")
+                        //Hier werden die bereits gefressenen Fishe von dem fressen ausgeschlossen. Sie können somit nicht nochmal gefressen werden.
+                        if (allfishes[Index2].appearancefishleft != "")
                         {
-                            if (allfishes[Index2].appearbroad == allfishes[Index].appearbroad + allfishes[Index].appearancefishleft.Length)
+                            //Condition for the broad-coordinates of the fishes
+                            if (allfishes[Index2].appearbroad == allfishes[Index].appearbroad + allfishes[Index].appearancefishleft.Length
+                                || allfishes[Index2].appearbroad - 1 == allfishes[Index].appearbroad + allfishes[Index].appearancefishleft.Length)
                             {
+                                //only a bigger fish can eat the other one (first condition) and the height-coordinates needs to be the same (second condition).
                                 if (allfishes[Index].appearancefishleft.Length > allfishes[Index2].appearancefishleft.Length
                                     && allfishes[Index2].appearheight == allfishes[Index].appearheight)
                                 {
+                                    //The eaten fishes get the new string "", so one can´t see them in the aquarium output.
                                     allfishes[Index2].appearancefishleft = "";
                                     allfishes[Index2].appearancefishright = "";
+                                    //The string for the shape of the fish wich ate is made one sign longer through this code.
                                     string linkeworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft[0]);
                                     string rechteworthälfte1 = Convert.ToString(allfishes[Index].appearancefishleft);
                                     allfishes[Index].appearancefishleft = $"{linkeworthälfte1}{rechteworthälfte1}";
@@ -190,6 +278,9 @@ namespace Aquariumproject
                     }
                 }
             }
+        }
+        public void movefishes()
+        { 
             for (int Index = 0; Index < allfishes.Length; Index++)
             {
                 allfishes[Index].schwimmtiefe();

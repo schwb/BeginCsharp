@@ -43,28 +43,25 @@ namespace Aquariumproject
             string Bedingung = "unendlich";
             fischtank.filltheaquarium();
             fischtank.fillinfishes();
+            fischtank.eatingfishes();
             fischtank.output();
-            Thread.Sleep(300);
+            Thread.Sleep(500);
             Console.Clear();
             fischtank.filltheaquarium();
             fischtank.movefishes();
+            fischtank.eatingfishes();
             fischtank.output();
-            Thread.Sleep(100);
-            fischtank.fillindinosour(Riesenkroko);
+            Thread.Sleep(500);
+            //fischtank.fillindinosour(Riesenkroko);
             while (Bedingung == "unendlich")
             {
                 Console.Clear();
                 fischtank.filltheaquarium();
-                fischtank.movedinosour(Riesenkroko);
-                fischtank.movedinosour(Riesenkroko);
-                fischtank.movedinosour(Riesenkroko);
-                fischtank.movedinosour(Riesenkroko);
-                fischtank.movedinosour(Riesenkroko);
-                fischtank.movedinosour(Riesenkroko);
-                fischtank.movedinosour(Riesenkroko);
+                /*fischtank.movedinosour(Riesenkroko);*/
                 fischtank.movefishes();
+                fischtank.eatingfishes();
                 fischtank.output();
-                Thread.Sleep(100);
+                Thread.Sleep(500);
             }
         }
     }
