@@ -290,15 +290,14 @@ namespace Aquariumproject
                 //First of all the method schwimmtiefe changes the appearheight of the fish depending on the specified probability.
                 allfishes[Index].schwimmtiefe();
                 //In this if-condition the fishes reaching the left side of the aquarium are set one step to the right and turn around.
-                if (allfishes[Index].appearbroad == 0)
+                if (allfishes[Index].appearbroad == 1)
                 {
-                    allfishes[Index].appearbroad = 1;
                     allfishes[Index].leftright = "right";
                 }
                 //In this if-condition the fishes reaching the right side of the aquarium turn around.
                 else if (allfishes[Index].appearbroad > broad - allfishes[Index].appearancefishleft.Length -2)
                 {
-                    allfishes[Index].appearbroad = broad - allfishes[Index].appearancefishleft.Length - 1;
+                    allfishes[Index].appearbroad = broad - allfishes[Index].appearancefishleft.Length - 2 /*-1*/;
                     allfishes[Index].leftright = "left";
                 }
                 /*else
@@ -338,7 +337,7 @@ namespace Aquariumproject
                                     allfishes[Index].appearbroad += 2;
                                     Veränderung = "ja3";
                                 }
-                                else if (allfishes[Index].appearheight>0 && Veränderung == "ja3")
+                                else if (allfishes[Index].appearheight>1 && Veränderung == "ja3")
                                 {
                                     allfishes[Index].appearheight -= 1;
                                     allfishes[Index].appearbroad -= 1;

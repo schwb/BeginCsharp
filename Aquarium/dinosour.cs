@@ -24,7 +24,7 @@ namespace Aquariumproject
             int highlow = r.Next(0, 99);
                 if (highlow % 2 == 0)
                 {
-                    if (appearheight == 0 || appearheight == 1)
+                    if (appearheight < 2 || appearheight == 1)
                     {
                     }
                     else

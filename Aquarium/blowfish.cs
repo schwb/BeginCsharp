@@ -19,7 +19,7 @@ namespace Aquariumproject
             {
                 if (highlow % 2 == 0)
                 {
-                    if (appearheight == 0 || appearheight == 1)
+                    if (appearheight < 2)
                     {
                     }
                     else
